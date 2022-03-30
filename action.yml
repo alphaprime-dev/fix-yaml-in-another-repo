@@ -1,0 +1,33 @@
+name: "Bump K8s manifests"
+author: JunHCha <quffl9612@alphaprime.co.kr>
+description: "GitOps CD pipeline bumping up Kubernetes's manifests defined at Git repository."
+inputs:
+  REPOSITORY:
+    description: The path for the Kubernetes manifests' git repository.
+    default: alphaprime-dev/alphasquare-infra
+    required: false
+  VALUE_FILE_PATH:
+    description: The path for the target values file which is going to be updated.
+    required: true
+  USER_EMAIL:
+    description: User email that is allowed to make a commit on k8s manifests' git repository.
+    default: quffl9612@naver.com
+    required: false
+  USER_NAME:
+    description: User name that is allowed to make a commit on k8s manifests' git repository.
+    default: junhcha
+    required: false
+  GITHUB_TOKEN:
+    description: Github access token of the user.
+    default: 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
+    required: true
+  TARGET_BRANCH:
+    description: The target branch of the k8s manifests' git repository which will be updated.
+    required: true
+  IMAGE_TAG:
+    description: The image tag that will be bumped up.
+    required: true
+
+runs:
+  using: "docker"
+  image: Dockerfile
