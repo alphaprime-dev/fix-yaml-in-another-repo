@@ -11,15 +11,12 @@ inputs:
     required: true
   USER_EMAIL:
     description: User email that is allowed to make a commit on k8s manifests' git repository.
-    default: quffl9612@naver.com
     required: false
   USER_NAME:
     description: User name that is allowed to make a commit on k8s manifests' git repository.
-    default: junhcha
     required: false
   GITHUB_TOKEN:
     description: Github access token of the user.
-    default: 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
     required: true
   TARGET_BRANCH:
     description: The target branch of the k8s manifests' git repository which will be updated.
