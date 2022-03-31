@@ -4,8 +4,8 @@ COPY ./requirements.txt /app/requirements.txt
 
 RUN pip install -r /app/requirements.txt
 
-COPY ./bump-k8s-manifests /app/bump-k8s-manifests
+COPY ./fix-yaml /app/fix-yaml
 
 ENV PYTHONPATH=/app
 
-CMD ["python", "-m", "bump-k8s-manifests"]
+CMD ["python", "-m", "fix-yaml"]
