@@ -1,3 +1,4 @@
+import json
 import logging
 import subprocess
 import sys
@@ -51,11 +52,11 @@ except GithubException.UnknownObjectException:
     sys.exit(1)
 
 logging.info("Parsing key-val pairs")
-kv_pairs = []
-for each in settings.input_key_val_pairs:
-    keys, val = each.split(",")
-    keys = keys.split(".")
-    kv_pairs.append([keys, val.strip()])
+kv_json = json.loads(settings.input_key_val_pairs)
+kv_list = []
+for key, val in kv_json.items():
+    keys = key.split(".")
+    kv_list.append([keys, val.strip()])
 
 
 logging.info("Updating target yaml file")
@@ -76,7 +77,7 @@ def update_dict(keys: List[str], val: str, values: dict):
         return update_dict(keys[1:], val, values[keys[0]])
 
 
-for each in kv_pairs:
+for each in kv_list:
     key = each[0]
     val = each[1]
     logging.info(f"Updating {key} with {val}")
