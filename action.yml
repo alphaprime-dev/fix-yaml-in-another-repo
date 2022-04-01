@@ -1,28 +1,31 @@
-name: "Bump K8s manifests"
+name: "Fix yaml in another repository"
 author: JunHCha <quffl9612@alphaprime.co.kr>
-description: "GitOps CD pipeline bumping up Kubernetes's manifests defined at Git repository."
+description: "Fix yaml file in another repository with the given key and value."
 inputs:
-  REPOSITORY:
-    description: The path for the Kubernetes manifests' git repository.
-    default: alphaprime-dev/alphasquare-infra
-    required: false
-  VALUE_FILE_PATH:
-    description: The path for the target values file which is going to be updated.
+  useremail:
+    description: User email that is allowed to make a commit on target repository.
     required: true
-  USER_EMAIL:
-    description: User email that is allowed to make a commit on k8s manifests' git repository.
-    required: false
-  USER_NAME:
-    description: User name that is allowed to make a commit on k8s manifests' git repository.
-    required: false
-  GITHUB_TOKEN:
-    description: Github access token of the user.
+  username:
+    description: User name that is allowed to make a commit on target git repository.
     required: true
-  TARGET_BRANCH:
-    description: The target branch of the k8s manifests' git repository which will be updated.
+  token:
+    description: The Github access token.
     required: true
-  IMAGE_TAG:
-    description: The image tag that will be bumped up.
+  target_repository:
+    description: The Git repository which has target yaml file.
+    required: true
+  file_path:
+    description: The path for the target values file to be modified.
+    required: true
+  target_branch:
+    description: The target branch of the git repository to modify.
+    required: true
+  commit_message:
+    description: Commit message.
+    default: Update yaml file
+    required: false
+  key_val_pairs:
+    description: key-value pairs to update.
     required: true
 
 runs:
