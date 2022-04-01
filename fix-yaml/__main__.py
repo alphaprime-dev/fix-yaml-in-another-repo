@@ -15,7 +15,7 @@ class Settings(BaseSettings):
     input_file_path: str
     input_target_branch: str
     input_commit_message: str
-    input_key_val_pairs: List[str]
+    input_key_val_pairs: str
 
 
 logging.basicConfig(level=logging.INFO)
