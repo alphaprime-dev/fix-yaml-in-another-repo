@@ -68,12 +68,13 @@ except yaml.YAMLError as exc:
 
 
 def update_dict(keys: List[str], val: str, values: dict):
+    if keys[0] not in values:
+        print("raise")
+        raise KeyError(f'Key "{keys[0]}" not found in yaml')
     if len(keys) == 1:
         values[keys[0]] = val
         return values
     else:
-        if keys[0] not in values:
-            raise KeyError(f"Key {keys[0]} not found in yaml")
         return update_dict(keys[1:], val, values[keys[0]])
 
 
@@ -83,7 +84,8 @@ for each in kv_list:
     logging.info(f"Updating {key} with {val}")
     try:
         values = update_dict(key, val, values)
-    except KeyError:
+    except KeyError as e:
+        logging.exception(e)
         sys.exit(1)
 
 new_values = yaml.dump(values, default_flow_style=False, sort_keys=False)
