@@ -82,7 +82,7 @@ for each in kv_list:
     val = each[1]
     logging.info(f"Updating {key} with {val}")
     try:
-        values = update_dict(key, values)
+        values = update_dict(key, val, values)
     except KeyError:
         sys.exit(1)
 
