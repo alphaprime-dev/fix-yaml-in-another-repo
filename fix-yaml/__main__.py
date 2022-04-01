@@ -5,12 +5,10 @@ from typing import List
 
 import yaml
 from github import Github, GithubException
-from pydantic import BaseSettings, EmailStr, SecretStr
+from pydantic import BaseSettings, SecretStr
 
 
 class Settings(BaseSettings):
-    input_useremail: EmailStr
-    input_username: str
     input_token: SecretStr
     input_target_repository: str
     input_file_path: str

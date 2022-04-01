@@ -2,12 +2,6 @@ name: "Fix yaml in another repository"
 author: JunHCha <quffl9612@alphaprime.co.kr>
 description: "Fix yaml file in another repository with the given key and value."
 inputs:
-  useremail:
-    description: User email that is allowed to make a commit on target repository.
-    required: true
-  username:
-    description: User name that is allowed to make a commit on target git repository.
-    required: true
   token:
     description: The Github access token.
     required: true
