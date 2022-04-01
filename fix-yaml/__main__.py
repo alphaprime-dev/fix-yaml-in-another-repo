@@ -94,4 +94,5 @@ target_repo.update_file(
     settings.input_commit_message,
     new_values,
     target_file.sha,
+    settings.input_target_branch,
 )
