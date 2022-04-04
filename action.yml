@@ -5,6 +5,14 @@ inputs:
   token:
     description: The Github access token.
     required: true
+  username:
+    description: The user name of the commit author.
+    default: github-actions
+    required: false
+  useremail:
+    description: The user email of the commit author.
+    default: gitub-actions@github.com
+    required: false
   target_repository:
     description: The Git repository which has target yaml file.
     required: true
@@ -18,7 +26,7 @@ inputs:
     description: Commit message.
     default: Update yaml file
     required: false
-  key_val_pairs:
+  values:
     description: key-value pairs to update.
     required: true
 

@@ -11,20 +11,25 @@ from pydantic import BaseSettings, SecretStr
 
 class Settings(BaseSettings):
     input_token: SecretStr
+    input_username: str
+    input_useremail: str
     input_target_repository: str
     input_file_path: str
     input_target_branch: str
     input_commit_message: str
-    input_key_val_pairs: str
+    input_values: str
 
 
 logging.basicConfig(level=logging.INFO)
 settings = Settings()
 
 logging.info("Setting up GitHub Actions git user")
-subprocess.run(["git", "config", "user.name", "github-actions"], check=True)
 subprocess.run(
-    ["git", "config", "user.email", "github-actions@github.com"],
+    ["git", "config", "user.name", settings.input_username],
+    check=True,
+)
+subprocess.run(
+    ["git", "config", "user.email", settings.input_useremail],
     check=True,
 )
 
@@ -52,11 +57,11 @@ except GithubException.UnknownObjectException:
     sys.exit(1)
 
 logging.info("Parsing key-val pairs")
-kv_json = json.loads(settings.input_key_val_pairs)
+kv_json = json.loads(settings.input_values)
 kv_list = []
 for key, val in kv_json.items():
     keys = key.split(".")
-    kv_list.append([keys, val.strip()])
+    kv_list.append([keys, val])
 
 
 logging.info("Updating target yaml file")
