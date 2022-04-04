@@ -69,7 +69,6 @@ except yaml.YAMLError as exc:
 
 def update_dict(keys: List[str], val: str, values: dict):
     if keys[0] not in values:
-        print("raise")
         raise KeyError(f'Key "{keys[0]}" not found in yaml')
     if len(keys) == 1:
         values[keys[0]] = val
