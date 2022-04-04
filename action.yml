@@ -1,0 +1,35 @@
+name: "Fix yaml in another repository"
+author: JunHCha <quffl9612@alphaprime.co.kr>
+description: "Fix yaml file in another repository with the given key and value."
+inputs:
+  token:
+    description: The Github access token.
+    required: true
+  username:
+    description: The user name of the commit author.
+    default: github-actions
+    required: false
+  useremail:
+    description: The user email of the commit author.
+    default: gitub-actions@github.com
+    required: false
+  target_repository:
+    description: The Git repository which has target yaml file.
+    required: true
+  file_path:
+    description: The path for the target values file to be modified.
+    required: true
+  target_branch:
+    description: The target branch of the git repository to modify.
+    required: true
+  commit_message:
+    description: Commit message.
+    default: Update yaml file
+    required: false
+  values:
+    description: key-value pairs to update.
+    required: true
+
+runs:
+  using: "docker"
+  image: Dockerfile
