@@ -25,11 +25,11 @@ settings = Settings()
 
 logging.info("Setting up GitHub Actions git user")
 subprocess.run(
-    ["git", "config", "user.name", settings.input_username],
+    ["git", "config", "--global", "user.name", settings.input_username],
     check=True,
 )
 subprocess.run(
-    ["git", "config", "user.email", settings.input_useremail],
+    ["git", "config", "--global", "user.email", settings.input_useremail],
     check=True,
 )
 
